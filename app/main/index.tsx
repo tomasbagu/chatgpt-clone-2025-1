@@ -1,5 +1,5 @@
-import { View, Text, TextInput, Button, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, TextInput, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import { APIResponse } from '@/interfaces/Responses';
 import { Message } from '@/interfaces/AppInterfaces';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import Markdown from 'react-native-markdown-display';
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore/lite';
 import { db } from '@/utils/FirebaseConfig';
 import { firebaseTimestampToDate } from '@/utils/FirebaseToDate';
+import { DataContext } from '@/context/dataContext/DataContext';
 
 export default function chat() {
 
@@ -14,15 +15,16 @@ export default function chat() {
     const [messages, setMessages] = useState([] as Message[]);
     const [isLoading, setIsLoading] = useState(false);
     const [input, setInput] = useState("");
+    const { updateChat, createChat } = useContext(DataContext);
 
     useEffect(() => {
         if (isLoading || messages.length == 0) return;
-        if (id) {
-            updateChat();
-        } else {
-            createChat();
-        }
 
+        if (id) {
+            updateChat(id, messages);
+        } else {
+            createChat(input, messages).then((id: string | undefined) => setId(id));
+        }
     }, [isLoading]);
 
     const sendMessage = async () => {
@@ -44,33 +46,6 @@ export default function chat() {
             console.log("Error:", { error })
         } finally {
             setIsLoading(false);
-        }
-    }
-
-    const updateChat = async () => {
-        try {
-            // @ts-ignore
-            const chatRef = doc(db, "chats", id);
-            await updateDoc(chatRef, {
-                messages
-            });
-        } catch (error) {
-            console.log({ error })
-        }
-    }
-
-    const createChat = async () => {
-        try {
-            const textSplit = messages[0].text.split(" ");
-            const response = await addDoc(collection(db, "chats"), {
-                title: textSplit.slice(0, 3).join(" "),
-                create_at: new Date(),
-                messages
-            });
-            setId(response.id);
-            console.log({ response })
-        } catch (error) {
-            console.log("Error: ", { error })
         }
     }
 

@@ -14,6 +14,9 @@ export default function Index() {
   const login = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log({
+        response: response.user
+      })
       if (response.user) {
         router.push("/main");
       }
@@ -31,7 +34,7 @@ export default function Index() {
       }}
     >
       <Button
-        title="Screens"
+        title="Login"
         onPress={login}
       />
     </ThemedView>

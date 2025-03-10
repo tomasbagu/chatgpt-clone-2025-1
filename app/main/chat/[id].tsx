@@ -1,5 +1,5 @@
 import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, TouchableOpacity, Platform, SafeAreaView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 import { doc, getDoc, updateDoc } from 'firebase/firestore/lite';
@@ -7,6 +7,7 @@ import { db } from '@/utils/FirebaseConfig';
 import { APIResponse } from '@/interfaces/Responses';
 import { firebaseTimestampToDate } from '@/utils/FirebaseToDate';
 import Markdown from 'react-native-markdown-display';
+import { DataContext } from '@/context/dataContext/DataContext';
 
 export default function chat() {
 
@@ -14,6 +15,7 @@ export default function chat() {
     const [messages, setMessages] = useState([] as any[]);
     const [isLoading, setIsLoading] = useState(false);
     const [input, setInput] = useState("");
+    const { updateChat } = useContext(DataContext)
 
     useEffect(() => {
         getChat();
@@ -21,7 +23,7 @@ export default function chat() {
 
     useEffect(() => {
         if (isLoading || messages.length == 0) return;
-        updateChat();
+        updateChat(id, messages);
     }, [isLoading]);
 
     const sendMessage = async () => {
@@ -43,18 +45,6 @@ export default function chat() {
             console.log("Error:", { error })
         } finally {
             setIsLoading(false);
-        }
-    }
-
-    const updateChat = async () => {
-        try {
-            // @ts-ignore
-            const chatRef = doc(db, "chats", id);
-            await updateDoc(chatRef, {
-                messages
-            });
-        } catch (error) {
-            console.log({ error })
         }
     }
 
