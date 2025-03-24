@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# Welcome to your Expo app 👋  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).  
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 ChatGPT Clone 2025 - Mobile App  
+
+¡Bienvenido a **ChatGPT Clone 2025**! 🚀  
+Esta es una aplicación móvil creada con **Expo** y **React Native**, donde recreamos la experiencia de ChatGPT con una interfaz intuitiva y moderna.  
+
+### 🎯 **Características principales**  
+
+✅ **Chat interactivo** - Haz preguntas y recibe respuestas en tiempo real.  
+✅ **Historial de chats** - Accede a tus conversaciones anteriores.  
+✅ **Creación de nuevos chats** - Inicia nuevas sesiones de conversación con un solo toque.  
+✅ **Diseño responsivo** - Interfaz optimizada para dispositivos móviles.  
+
+---
+
+## Get started  
+
+1. Install dependencies  
 
    ```bash
    npm install
-   ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+2️. Iniciar la aplicación
 ```bash
+npx expo start
+
+En la consola, verás opciones para abrir la app en:
+
+Development build
+
+Android emulator
+
+iOS simulator
+
+Expo Go
+
+Puedes empezar a desarrollar editando los archivos dentro del directorio app. Este proyecto utiliza file-based routing.
+
+🛠 Tecnologías utilizadas
+React Native - Para la interfaz móvil.
+
+Expo - Para simplificar el desarrollo y pruebas.
+
+Firebase - Para autenticación y almacenamiento de chats.
+
+Context API - Para la gestión global del estado.
+
+📌 Funcionalidades en detalle
+🔍 Buscar y recuperar chats antiguos
+Todos los chats se almacenan en Firebase y pueden ser recuperados fácilmente desde el historial. Esto permite continuar conversaciones previas sin perder el contexto.
+
+✨ Crear nuevos chats
+Presiona el botón "New Chat" en el Sidebar para iniciar una conversación desde cero. Si no introduces un título, el chat se actualizará con la primera búsqueda que hagas.
+
+📌 Sidebar de navegación
+Desde la pantalla de chat, puedes abrir un menú lateral donde se listan los chats guardados y opciones adicionales.
+
+🔄 Get a fresh project
+Cuando estés listo, ejecuta:
+
+bash
+Copiar
+Editar
 npm run reset-project
-```
+Este comando moverá el código de inicio al directorio app-example y creará un directorio en blanco app donde puedes empezar a desarrollar.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+📚 Learn more
+Para aprender más sobre el desarrollo con Expo, revisa estos recursos:
 
-## Learn more
+📖 Expo documentation: Aprende los fundamentos o explora temas avanzados con nuestras guías.
 
-To learn more about developing your project with Expo, look at the following resources:
+🎓 Learn Expo tutorial: Sigue un tutorial paso a paso para crear un proyecto funcional en Android, iOS y la web.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+🤝 Contribución
+¡Toda colaboración es bienvenida! Si quieres mejorar el proyecto:
 
-## Join the community
+1️⃣ Haz un fork del repositorio.
+2️⃣ Crea una nueva rama con tu mejora:
 
-Join our community of developers creating universal apps.
+sh
+Copiar
+Editar
+git checkout -b mi-mejora
+3️⃣ Sube los cambios y abre un Pull Request.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+📄 Licencia
+Este proyecto está bajo la licencia MIT. ¡Úsalo y modifícalo libremente!
+
+🌍 Join the community
+⭐ Expo en GitHub: Contribuye a la plataforma de código abierto.
+
+💬 Discord community: Únete a la comunidad de Expo y resuelve dudas en tiempo real.
