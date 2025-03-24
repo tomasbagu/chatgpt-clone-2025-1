@@ -1,42 +1,41 @@
+import React, { useEffect } from "react";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Button } from "react-native";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { ThemedView } from "@/components/ThemedView";
-import { auth } from "@/utils/FirebaseConfig";
 
-export default function Index() {
-
+export default function SplashScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState("hans@test.com");
-  const [password, setPassword] = useState("123456");
 
-  const login = async () => {
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log({
-        response: response.user
-      })
-      if (response.user) {
-        router.push("/main");
-      }
-    } catch (error) {
-      console.log("Error Login: ", { error })
-    }
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace("/Login"); // Asegúrate de que existe app/welcome.js
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [router]);
 
   return (
-    <ThemedView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button
-        title="Login"
-        onPress={login}
-      />
-    </ThemedView>
+    <View style={styles.container}>
+      <Image source={require("../assets/images/logochat.png")} style={styles.logo} />
+      <Text style={styles.title}>ChatGPT</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#2D2F36",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    resizeMode: "contain",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+  },
+});
